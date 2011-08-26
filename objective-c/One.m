@@ -22,6 +22,7 @@
 	for (int i = 0, l = [str length]; i < l; i++) {
 		palindromeCenteredAtPosition = [self findPalindromeForString:str
 														  atPosition:i];
+		NSLog(@"%@", palindromeCenteredAtPosition);
 		if ([palindromeCenteredAtPosition length] > [longest length]) {
 			longest = palindromeCenteredAtPosition;
 		}
@@ -50,7 +51,12 @@
 	if (start < 0) {
 		start = 0;
 	}
-	return [str substringWithRange:NSMakeRange (start, end - start)];
+	NSString *possiblePalindrome = [str substringWithRange:NSMakeRange (start, end - start)];
+	if (possiblePalindrome.length == 1) {
+		return @"";
+	} else {
+		return [pdrome substringWithRange:NSMakeRange(1, possiblePalindrome.length - 1)];
+	}
 }
 
 @end
