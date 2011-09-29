@@ -1,0 +1,52 @@
+<!doctype>
+<html>
+    <head>
+        <title>Get Array Intersections</title>
+        <script>
+            var getSortedArrayIntersection = function(arr1, arr2) {
+                var res = [], i = 0, j = 0,
+                arrOneLength = arr1.length, arrTwoLength = arr2.length;
+                // O(m + n): is the time you need to search
+                while (i < arrOneLength && j < arrTwoLength) {
+                    if (arr1[i] < arr2[j]) {
+                        i++;
+                    } else if (arr2[j] < arr1[i]) {
+                        j++;
+                    } else {
+                        res.push(arr2[j++]);
+                        i++;
+                    }
+                }
+                return res;
+            },
+            getUnSortedArrayIntersection = function(arr1, arr2) {
+                // poor space usage, but runs quick
+                var res = [], arrayToObject = function(arr) {
+                    var o = {};
+                    // O(n)
+                    arr.forEach(function(item, index, array) {
+                        o[item] = true;
+                    });
+                    return o;
+                }, obj = arrayToObject(arr1);
+                // O(n)
+                for (var i = 0, l = arr2.length; i < l; i++) {
+                    if (obj[arr2[i]]) {
+                        res.push(arr2[i]);
+                    }
+                }
+                return res;
+            };
+            doIt = function() {
+                document.getElementById('sortedResult').innerHTML = getSortedArrayIntersection([1, 2, 3, 4, 5], [2, 3, 4, 7]);
+                document.getElementById('unsortedResult').innerHTML = getUnSortedArrayIntersection([2, 4, 6, 8], [8, 9, 1, 0]);
+            };
+        </script>
+    </head>
+    <body onLoad="doIt();">
+        <h1>Sorted Result</h1>
+        <p id="sortedResult"></p>
+        <h1>Unsorted Result</h1>
+        <p id="unsortedResult"></p>
+    </body>
+</html>
