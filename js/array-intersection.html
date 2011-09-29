@@ -1,7 +1,7 @@
 <!doctype>
 <html>
     <head>
-        <title>Get Array Intersections</title>
+        <title>Array Intersections/Unions</title>
         <script>
             var getSortedArrayIntersection = function(arr1, arr2) {
                 var res = [], i = 0, j = 0,
@@ -36,17 +36,47 @@
                     }
                 }
                 return res;
+            },
+            getSortedArrayUnion = function(arr1, arr2) {
+                var i = 0, j = 0, m = arr1.length, n = arr2.length, res = [];
+                while(i < m && j < n) {
+                    if (arr1[i] < arr2[j]) {
+                        res.push(arr1[i++]);
+                    } else if (arr2[j] < arr1[i]) {
+                        res.push(arr2[j++]);
+                    } else {
+                        res.push(arr2[j++]);
+                        i++;
+                    }
+                }
+                while (i < m) {
+                    res.push(arr1[i++]);
+                }
+                while (j < n) {
+                    res.push(arr2[j++]);
+                }
+                return res;
+            },
+            getUnSortedArrayUnion = function(arr1, arr2) {
+                var res = [];
+                return res;
             };
             doIt = function() {
-                document.getElementById('sortedResult').innerHTML = getSortedArrayIntersection([1, 2, 3, 4, 5], [2, 3, 4, 7]);
-                document.getElementById('unsortedResult').innerHTML = getUnSortedArrayIntersection([2, 4, 6, 8], [8, 9, 1, 0]);
+                document.getElementById('sortedIntersectionResult').innerHTML = getSortedArrayIntersection([1, 2, 3, 4, 5], [2, 3, 4, 7]);
+                document.getElementById('unsortedIntersectionResult').innerHTML = getUnSortedArrayIntersection([2, 4, 6, 8], [8, 9, 1, 0]);
+                document.getElementById('sortedUnionResult').innerHTML = getSortedArrayUnion([1, 2, 3], [2, 3, 4, 5, 6]);
+                document.getElementById('unSortedUnionResult').innerHTML = getUnSortedArrayUnion([3, 2, 1], [2, 3, 4, 5, 6, 0]);
             };
         </script>
     </head>
     <body onLoad="doIt();">
-        <h1>Sorted Result</h1>
-        <p id="sortedResult"></p>
-        <h1>Unsorted Result</h1>
-        <p id="unsortedResult"></p>
+        <h1>Sorted Intersection Result</h1>
+        <p id="sortedIntersectionResult"></p>
+        <h1>Unsorted Intersection Result</h1>
+        <p id="unsortedIntersectionResult"></p>
+        <h1>Sorted Union Result</h1>
+        <p id="sortedUnionResult"></p>
+        <h1>UnSorted Union Result</h1>
+        <p id="unSortedUnionResult"></p>
     </body>
 </html>

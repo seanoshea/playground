@@ -1,0 +1,31 @@
+<!doctype>
+<html>
+    <head>
+        <title>Get the k largest integers in an unsorted array</title>
+        <script>
+            var kLargestInUnsortedArray = function(arr, k) {
+                var res = [];
+                // O(n)
+                for (var i = 0, l = arr.length; i < l; i++) {
+                    if (res.length < k) {
+                        res.push(arr[i]);
+                    } else {
+                        for (var j = 0, k = res.length; j < k; j++) {
+                            if (arr[i] > res[j]) {
+                                res[j] = arr[i];
+                            }
+                        }
+                    }
+                }
+                return res;
+            };
+            doIt = function() {
+                document.getElementById('result').innerHTML = kLargestInUnsortedArray([101, 44, 55, 66, 77], 2);
+            };
+        </script>
+    </head>
+    <body onLoad="doIt();">
+        <h1>Result</h1>
+        <p id="result"></p>
+    </body>
+</html>
