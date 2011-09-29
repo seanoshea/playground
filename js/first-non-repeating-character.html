@@ -1,0 +1,35 @@
+<!doctype>
+<html>
+    <head>
+        <title>First Non Repeating Character</title>
+        <script>
+            var values = ['a', 'a', 'b', 'b', 'c', 'd', 'e'], hash = {};
+            findFirstNonRepeatingCharacter = function() {
+                var value, returnValue = -1;
+                for (var i = 0, l = values.length; i < l; i++) {
+                    value = values[i];
+                    if (!hash[value]) {
+                        hash[value] = {i: i, count: 1};
+                    } else {
+                        hash[value].count = hash[value].count + 1;
+                    }
+                }
+                for (var i in hash) {
+                    if (hash.hasOwnProperty(i) &&
+                        hash[i].count === 1 &&
+                        (returnValue === -1 || hash[i].i < returnValue)) {
+                            returnValue = hash[i].i;
+                    }
+                }
+                return returnValue !== -1 ? values[returnValue] : returnValue;
+            };
+            doIt = function() {
+                document.getElementById('result').innerHTML = findFirstNonRepeatingCharacter();
+            };
+        </script>
+    </head>
+    <body onLoad="doIt();">
+        <h1>Result</h1>
+        <p id="result"></p>
+    </body>
+</html>
