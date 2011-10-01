@@ -1,0 +1,54 @@
+<!doctype>
+<html>
+    <head>
+        <title>Some shuffling algorithms</title>
+        <script>
+            // a lot of this is based on http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+            var modernExample = function() {
+                var arr = generateRandomArray(), j, tmp;
+                for (var i = arr.length - 1; i > 0; i--) {
+                    j = randomNum(0, i);
+                    tmp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = tmp;
+                }
+                return arr;
+            },
+            msShuffleExample = function() {
+                var arr = generateRandomArray(), d, c, b = arr.length;
+                while(b) {
+                    c = Math.floor(Math.random()*b);
+                    d = arr[--b];
+                    arr[b] = arr[c];
+                    arr[c] = d;
+                }
+                return arr;
+            },
+            generateRandomArray = function() {
+                var arr = [], num;
+                for (var i = 0; i < 25; i++) {
+                    num = parseInt(Math.random() * (999 - 1) + 1, 10);
+                    if (num) {
+                        arr.push(num);
+                    }
+                }
+                return arr;
+            },
+            //function to get random number upto m
+            randomNum = function(minVal, maxVal) {
+                var randVal = minVal + (Math.random() * (maxVal - minVal));
+                return Math.round(randVal);
+            };
+            doIt = function() {
+                document.getElementById('modernExample').innerHTML = modernExample();
+                document.getElementById('msShuffleExample').innerHTML = msShuffleExample();
+            };
+        </script>
+    </head>
+    <body onLoad="doIt();">
+        <h1>Modern Example</h1>
+        <p id="modernExample"></p>
+        <h1>MS Shuffle Example</h1>
+        <p id="msShuffleExample"></p>
+    </body>
+</html>
