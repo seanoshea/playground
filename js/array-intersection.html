@@ -4,9 +4,6 @@
         <title>Array Intersections/Unions</title>
         <script>
             var getSortedArrayIntersection = function(arr1, arr2) {
-                var arg = "http://manager.eye.fi/webauth.php?code=AQDgvlnI8jN-qb3AuI6glUdwSC8EtXad5XTKyCXW_mwvh1vrJUort9SWq1kml7q0u82rsAm_sQ-M1HORIJ8ZQcssSGNgGZ2GuPtICAuLCIhSih0jjHcdQqGahP9GvOds2LRGbYkWCgYZv5XKQVWSq16RT0swiZpfqvTXv_G_bTBe55dsHuW7DQai8z4v37rwEwU#eyefiWebAuthDone";
-                var res2 = arg.substring(arg.indexOf('?') + 1, arg.lastIndexOf('#eyefiWebAuthDone'));
-                console.warn('res 2', res2);
                 var res = [], i = 0, j = 0,
                 arrOneLength = arr1.length, arrTwoLength = arr2.length;
                 // O(m + n): is the time you need to search

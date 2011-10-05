@@ -4,10 +4,13 @@
         <title>Some shuffling algorithms</title>
         <script>
             // a lot of this is based on http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+            // on second inspection, modernExample & msShuffleExample are actually pretty similar.
             var modernExample = function() {
                 var arr = generateRandomArray(), j, tmp;
                 for (var i = arr.length - 1; i > 0; i--) {
+                    // get a random number between 0 & i
                     j = randomNum(0, i);
+                    // do the switchero
                     tmp = arr[j];
                     arr[j] = arr[i];
                     arr[i] = tmp;
@@ -15,12 +18,12 @@
                 return arr;
             },
             msShuffleExample = function() {
-                var arr = generateRandomArray(), d, c, b = arr.length;
-                while(b) {
-                    c = Math.floor(Math.random()*b);
-                    d = arr[--b];
-                    arr[b] = arr[c];
-                    arr[c] = d;
+                var arr = generateRandomArray(), tmp, len = arr.length;
+                while (len) {
+                    c = Math.floor(Math.random() * len);
+                    tmp = arr[--len];
+                    arr[len] = arr[c];
+                    arr[c] = tmp;
                 }
                 return arr;
             },
@@ -42,6 +45,7 @@
             doIt = function() {
                 document.getElementById('modernExample').innerHTML = modernExample();
                 document.getElementById('msShuffleExample').innerHTML = msShuffleExample();
+                // see http://jsperf.com/shuffler
             };
         </script>
     </head>
