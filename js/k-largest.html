@@ -10,9 +10,10 @@
                     if (res.length < k) {
                         res.push(arr[i]);
                     } else {
-                        for (var j = 0, k = res.length; j < k; j++) {
+                        for (var j = 0; j < k; j++) {
                             if (arr[i] > res[j]) {
                                 res[j] = arr[i];
+                                res.sort();
                             }
                         }
                     }
@@ -20,7 +21,7 @@
                 return res;
             };
             doIt = function() {
-                document.getElementById('result').innerHTML = kLargestInUnsortedArray([101, 44, 55, 66, 77], 2);
+                document.getElementById('result').innerHTML = kLargestInUnsortedArray([101, 44, 55, 66, 77, 202, 2, 1, 0, 400], 2);
             };
         </script>
     </head>
